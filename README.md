@@ -206,9 +206,8 @@ docs/images/         # Architecture & sequence diagram assets
 
 ## Team Contributions
 
-### Shahad Almalki
 
-### Shahad Alghamdi
+### Shahad Almalki
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
