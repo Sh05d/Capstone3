@@ -211,10 +211,9 @@ docs/images/         # Architecture & sequence diagram assets
 ### Shahad Alghamdi
 
 | Method | Endpoint | Description |
-
 |--------|----------|-------------|
 | `PUT` | `/api/v1/roadmap-step/complete/{student_id}/{roadmap_id}/{step_id}` | Marks a roadmap step as completed for a student |
-| `GET` | `/api/v1/challenge/by-skill-and-difficulty/{skillId}/{difficulty}` | Returns challenges filtered by skill and difficulty level |
+| `GET` | `/api/v1/challenge/by-skill-and-difficulty/{skillId}/{difficulty}` |  Returns challenges filtered by skill and difficulty level |
 | `GET` | `/api/v1/challenge-attempt/student-attempts/{studentId}/{challengeId}` | Returns all attempts made by a student on a specific challenge |
 | `POST` | `/api/v1/learning-group/join-private/{student_id}/{code}` | Student joins a private learning group using an invite code |
 | `POST` | `/api/v1/learning-group/join-public/{student_id}/{group_id}` | Student joins a public learning group |
@@ -226,7 +225,6 @@ docs/images/         # Architecture & sequence diagram assets
 | `GET` | `/api/v1/task/{learningGroupId}/tasks/available` | Returns currently available tasks in a learning group |
 | `GET` | `/api/v1/task/{learningGroupId}/tasks/old` | Returns expired or past tasks in a learning group |
 | `GET` | `/api/v1/task-submission/student/{studentId}/task/{taskId}/submissions` | Returns all submissions by a student for a specific task |
-
 
 ---
 
