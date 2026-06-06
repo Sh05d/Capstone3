@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Check;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Check(constraints = "difficulty='EASY' or difficulty='MEDIUM' or difficulty='HARD'")
 public class Task {
 
     @Id
@@ -25,10 +27,16 @@ public class Task {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(columnDefinition = "int not null")
+    private Integer points;
+
+    @Column(columnDefinition = "varchar(80) not null")
+    private String difficulty;
+
+    @Column(columnDefinition = "datetime not null")
     private LocalDateTime deadline;
 
-    private String status;
-
+    @Column(columnDefinition = "datetime not null")
     private LocalDateTime createdAt;
 
     @ManyToOne
@@ -38,4 +46,7 @@ public class Task {
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<TaskSubmission> taskSubmissions;
+
+    @Column(columnDefinition = "boolean default false")
+    private Boolean whatsappReminderSent = false;
 }

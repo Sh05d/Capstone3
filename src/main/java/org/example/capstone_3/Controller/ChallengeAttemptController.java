@@ -1,7 +1,7 @@
 package org.example.capstone_3.Controller;
 
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.example.capstone_3.Api.ApiResponse;
 import org.example.capstone_3.DTO.IN.ChallengeAttemptDTOIN;
 import org.example.capstone_3.Service.ChallengeAttemptService;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/challenge-attempt")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ChallengeAttemptController {
 
-    private ChallengeAttemptService challengeAttemptService;
+    private final ChallengeAttemptService challengeAttemptService;
 
     @GetMapping("/get")
     public ResponseEntity<?> get() {
@@ -25,9 +25,9 @@ public class ChallengeAttemptController {
         return ResponseEntity.ok(challengeAttemptService.getById(id));
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<?> saveChallengeAttempt(@RequestBody @Valid ChallengeAttemptDTOIN challengeAttemptDTOIN) {
-        challengeAttemptService.create(challengeAttemptDTOIN);
+    @PostMapping("{student_id}/create-attempt/{challenge_id}")
+    public ResponseEntity<?> saveChallengeAttempt(@PathVariable Integer student_id,@PathVariable Integer challenge_id, @RequestBody @Valid ChallengeAttemptDTOIN challengeAttemptDTOIN) {
+        challengeAttemptService.create(student_id,challenge_id, challengeAttemptDTOIN);
         return ResponseEntity.ok().body(new ApiResponse("Challenge attempt has been saved successfully"));
     }
 
@@ -41,5 +41,10 @@ public class ChallengeAttemptController {
     public ResponseEntity<?> deleteChallengeAttempt(@PathVariable Integer id) {
         challengeAttemptService.delete(id);
         return ResponseEntity.ok().body(new ApiResponse("Challenge attempt has been deleted successfully"));
+    }
+
+    @GetMapping("/student-attempts/{studentId}/{challengeId}")
+    public ResponseEntity<?> studentAttemptsForChallenge(@PathVariable Integer studentId, @PathVariable Integer challengeId) {
+        return ResponseEntity.ok(challengeAttemptService.studentAttemptsForChallenge(studentId, challengeId));
     }
 }

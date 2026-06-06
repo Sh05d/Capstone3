@@ -1,4 +1,5 @@
 package org.example.capstone_3.Model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,8 +20,10 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(unique = true, columnDefinition = "varchar(50) not null")
     private String name;
 
+    @Column(columnDefinition = "varchar(50) not null")
     private String category;
 
     @ManyToMany(mappedBy = "skills")

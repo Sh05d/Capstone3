@@ -1,6 +1,7 @@
 package org.example.capstone_3.ControllerAdvise;
 
 
+import org.example.capstone_3.AI.AiException;
 import org.example.capstone_3.Api.ApiException;
 import org.example.capstone_3.Api.ApiResponse;
 import org.springframework.dao.DataAccessException;
@@ -35,6 +36,11 @@ public class ControllerAdvisor {
     @ExceptionHandler(value = ApiException.class)
     public ResponseEntity<?> handleAPIException(ApiException ex) {
         return ResponseEntity.status(400).body(new ApiResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler(AiException.class)
+    public ResponseEntity<?> handleAiException(AiException ex) {
+        return ResponseEntity.status(503).body(new ApiResponse(ex.getMessage()));
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)

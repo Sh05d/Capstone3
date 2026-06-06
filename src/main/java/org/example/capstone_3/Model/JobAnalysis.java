@@ -1,4 +1,5 @@
 package org.example.capstone_3.Model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,22 +21,34 @@ public class JobAnalysis {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(columnDefinition = "varchar(100)")
     private String jobTitle;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "text not null")
     private String jobDescription;
 
-    @Column(columnDefinition = "TEXT")
-    private String requiredSkillsText;
+    @Column(name = "required_skills_text", columnDefinition = "text")
+    private String strengths;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "text")
     private String missingSkillsText;
 
+    @Column(columnDefinition = "int not null")
     private Integer matchScore;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "int")
+    private Integer readinessScore;
+
+    @Column(columnDefinition = "text not null")
+    private String summary;
+
+    @Column(name = "improvements", columnDefinition = "text not null")
+    private String weaknesses;
+
+    @Column(columnDefinition = "text")
     private String recommendations;
 
+    @Column(updatable = false, columnDefinition = "datetime not null")
     private LocalDateTime createdAt;
 
     @ManyToOne
@@ -50,15 +63,4 @@ public class JobAnalysis {
     )
     private Set<Skill> skills;
 
-    @OneToOne(mappedBy = "jobAnalysis", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private JobAnalysisReport jobAnalysisReport;
-
-    @OneToOne(mappedBy = "jobAnalysis", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Roadmap roadmap;
-
-    @OneToMany(mappedBy = "jobAnalysis", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<MockInterview> mockInterviews;
 }

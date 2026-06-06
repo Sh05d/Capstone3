@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Check;
 
 import java.time.LocalDateTime;
 
@@ -22,10 +23,10 @@ public class TaskSubmission {
     @Column(columnDefinition = "TEXT")
     private String answerText;
 
-    private String status;
-
+    @Column(columnDefinition = "int")
     private Integer score;
 
+    @Column(columnDefinition = "datetime not null")
     private LocalDateTime submittedAt;
 
     @Column(columnDefinition = "TEXT")

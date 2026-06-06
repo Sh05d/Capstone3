@@ -19,17 +19,15 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(columnDefinition = "varchar(50) not null")
     private String fullName;
 
-    @Column(unique = true)
+    @Column(unique = true, columnDefinition = "varchar(100) not null")
     private String email;
 
+    @Column(columnDefinition = "varchar(255) not null")
     private String password;
 
+    @Column(updatable = false, columnDefinition = "datetime not null")
     private LocalDateTime createdAt;
-
-    //test
-    private LocalDateTime updatedAt;
-    private Boolean active;
-
 }

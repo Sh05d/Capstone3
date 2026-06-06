@@ -1,0 +1,34 @@
+# Copy this file to application-local.properties (same folder).
+# application-local.properties is gitignored — use it for secrets and API keys.
+
+# --- Database (local) ---
+spring.datasource.password=
+
+# --- Schema (optional) ---
+# Use create-drop only when you want Hibernate to wipe and recreate all tables on each app start (noisy FK drop warnings on empty DB are normal)
+# spring.jpa.hibernate.ddl-auto=create-drop
+
+# --- AI (required for aiService.ask) ---
+# openai.api.key=sk-your-key-here
+
+# --- GitHub (optional; recommended for profile fetch rate limits) ---
+# github.api.token=
+
+# --- Other API keys (uncomment when needed) ---
+# gemini.api.key=
+# stripe.api.key=
+# sendgrid.api.key=
+
+# --- Email (required for interview notifications and PDF report delivery) ---
+# spring.mail.host=smtp.gmail.com
+# spring.mail.port=587
+# spring.mail.username=your-email@gmail.com
+# spring.mail.password=your-app-password
+# spring.mail.properties.mail.smtp.auth=true
+# spring.mail.properties.mail.smtp.starttls.enable=true
+
+# --- UltraMsg WhatsApp (required for WhatsApp notifications) ---
+# ultramsg.api-url=https://api.ultramsg.com/instance179524
+# ultramsg.token=your-ultramsg-token
+# logging.level.org.example.capstone_3.Service.WhatsAppService=INFO
+

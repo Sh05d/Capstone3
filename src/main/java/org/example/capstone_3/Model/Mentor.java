@@ -1,4 +1,5 @@
 package org.example.capstone_3.Model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,35 +21,46 @@ public class Mentor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(columnDefinition = "varchar(50) not null")
     private String fullName;
 
-    @Column(unique = true)
+    @Column(unique = true, columnDefinition = "varchar(13) not null")
+    private String phoneNumber;
+
+    @Column(unique = true, columnDefinition = "varchar(100) not null")
     private String email;
 
+    @Column(columnDefinition = "varchar(255) not null")
     private String password;
 
+    @Column(columnDefinition = "varchar(80) not null")
     private String jobTitle;
 
+    @Column(columnDefinition = "varchar(80) not null")
     private String company;
 
+    @Column(columnDefinition = "varchar(80) not null")
     private String specialization;
 
+    @Column(columnDefinition = "int not null")
     private Integer yearsExperience;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "text")
     private String bio;
 
-    private Boolean volunteer;
-
+    @Column(columnDefinition = "double not null")
     private Double sessionPrice;
 
+    @Column(columnDefinition = "double not null")
     private Double rating;
 
-    private Boolean available;
+    @Column(columnDefinition = "boolean not null")
+    private Boolean acceptedByAdmin;
 
+    @Column(updatable = false, columnDefinition = "datetime not null")
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "mentor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "mentor")
     @JsonIgnore
     private Set<Review> reviews;
 
