@@ -1,4 +1,5 @@
-# Khutaa — Capstone 3
+ 
+  # Khutaa — Capstone 3
 
 **Khutaa** is a Spring Boot backend that helps students prepare for tech careers through AI-powered learning tools, mentor mock interviews, skill tracking, job analysis, challenges, and learning groups.
 
@@ -206,71 +207,24 @@ docs/images/         # Architecture & sequence diagram assets
 
 ## Team Contributions
 
-### Saud Shafie
+
+### Shahad Almalki
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/api/v1/student/leaderboard` | Returns the full student leaderboard ordered by XP |
-| `GET` | `/api/v1/student/leaderboard/rank/{id}` | Returns a single student's leaderboard rank and XP |
-| `PUT` | `/api/v1/student/{id}/cv` | Updates a student's CV URL; extracts and stores CV text from the PDF |
-| `PUT` | `/api/v1/student/{id}/github` | Updates a student's GitHub URL; fetches and stores profile text |
-| `GET` | `/api/v1/review/student/{studentId}` | Returns all reviews written by a student |
-| `GET` | `/api/v1/review/student/{studentId}/reviewable-interviews` | Returns completed mentor interviews the student can still review |
-| `GET` | `/api/v1/mentor/get/{id}/reviews` | Returns all reviews received by a mentor |
-| `POST` | `/api/v1/admin/{adminId}/skills/generate-by-category` | Admin generates AI skill suggestions for a category and saves them |
-| `GET` | `/api/v1/admin/{adminId}/mentor/pending` | Returns mentors awaiting admin approval |
-| `PUT` | `/api/v1/admin/{adminId}/mentor/{mentorId}/approve` | Approves a pending mentor |
-| `PUT` | `/api/v1/admin/{adminId}/mentor/{mentorId}/unapprove` | Revokes a mentor's approval |
-| `POST` | `/api/v1/job-analysis/add/{studentId}` | Runs AI job analysis against a student's profile and saves the result |
-| `GET` | `/api/v1/student/{studentId}/roadmap/{roadmapId}/current-step` | Returns the student's current active roadmap step |
-
-#### Example requests (Saud Shafie endpoints)
-
-**Update CV**
-
-```http
-PUT /api/v1/student/1/cv
-Content-Type: application/json
-
-{
-  "cvUrl": "https://example.com/resume.pdf"
-}
-```
-
-**Update GitHub**
-
-```http
-PUT /api/v1/student/1/github
-Content-Type: application/json
-
-{
-  "githubUrl": "https://github.com/username"
-}
-```
-
-**Add job analysis**
-
-```http
-POST /api/v1/job-analysis/add/1
-Content-Type: application/json
-
-{
-  "jobDescription": "We are looking for a Java developer with Spring Boot experience..."
-}
-```
-
-**Generate skills by category (Admin)**
-
-```http
-POST /api/v1/admin/1/skills/generate-by-category
-Content-Type: application/json
-
-{
-  "category": "Programming"
-}
-```
-
-Valid categories: `Programming`, `Database`, `Testing`, `DevOps`, `Soft Skill`, `AI`, `Security`, `Other`.
+| `PUT` | `/api/v1/roadmap-step/complete/{student_id}/{roadmap_id}/{step_id}` | Marks a roadmap step as completed for a student |
+| `GET` | `/api/v1/challenge/by-skill-and-difficulty/{skillId}/{difficulty}` |  Returns challenges filtered by skill and difficulty level |
+| `GET` | `/api/v1/challenge-attempt/student-attempts/{studentId}/{challengeId}` | Returns all attempts made by a student on a specific challenge |
+| `POST` | `/api/v1/learning-group/join-private/{student_id}/{code}` | Student joins a private learning group using an invite code |
+| `POST` | `/api/v1/learning-group/join-public/{student_id}/{group_id}` | Student joins a public learning group |
+| `DELETE` | `/api/v1/learning-group/leave/{student_id}/{group_id}` | Student leaves a learning group |
+| `POST` | `/api/v1/learning-group/invite/{inviter_id}/{invited_student_id}/{group_id}` | Invites a student to private learning group |
+| `GET` | `/api/v1/task/{learningGroupId}/unsubmitted-tasks/{studentId}` | Returns tasks the student has not yet submitted in a group |
+| `GET` | `/api/v1/learning-group/{learningGroupId}/members` | Returns all members of a learning group |
+| `GET` | `/api/v1/learning-group/student/{studentId}/groups` | Returns all learning groups a student belongs to |
+| `GET` | `/api/v1/task/{learningGroupId}/tasks/available` | Returns currently available tasks in a learning group |
+| `GET` | `/api/v1/task/{learningGroupId}/tasks/old` | Returns expired or past tasks in a learning group |
+| `GET` | `/api/v1/task-submission/student/{studentId}/task/{taskId}/submissions` | Returns all submissions by a student for a specific task |
 
 ---
 
